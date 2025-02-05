@@ -8,11 +8,13 @@
 
 @section("sadrzajStranice")
 
-    @if($sat >= 0 && $sat <= 12)
-        <p>Dobar jutro</p>
-    @else
-        <p>Dobarn dan</p>
-    @endif
+
+    @foreach($products as $product)
+        <p>
+            {{$product->name}}
+        </p>
+    @endforeach
+
 
     <p>Trenutno sati: {{$sat}}</p>
     <p>Trenutno vreme je {{ $trenutnoVreme }}</p>

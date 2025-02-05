@@ -9,12 +9,8 @@
 
     @foreach( $products as $product)
 
-        @if( $product == "Iphone 14" || $product == "Iphone 15 pro")
-            <p>{{$product}} - SUPER SNIZENJE</p>
-        @else
-            <p>{{$product}}</p>
-        @endif
-
+            <p>{{$product->name}}</p>
+            <p>{{$product->description}}</p>
 
     @endforeach
 
