@@ -14,6 +14,4 @@
 
     @endforeach
 
-    <a href="admin/add-product">Dodaj produkt</a>
-
 @endsection
