@@ -2,7 +2,7 @@
 
 @section("sadrzajStranice")
 
-    <form method="post" action="addProduct">
+    <form method="post" action="/admin/add-product">
 
         @csrf
         <input name="name" type="text" placeholder="Product">

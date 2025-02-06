@@ -14,7 +14,7 @@ class ProductsController extends Controller
         return view('products',compact('allProducts'));
     }
 
-    function addProduct (Request $request){
+    public function addProduct (Request $request){
 
         $request->validate([
             'name' => 'required|string',
@@ -30,9 +30,11 @@ class ProductsController extends Controller
             'amount' => $request->get('amount'),
             'price' => $request->get('price'),
             'image' => $request->get('image')
+
+
         ]);
 
-        return view('addProduct');
+
 
 
     }

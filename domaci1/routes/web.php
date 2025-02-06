@@ -12,7 +12,9 @@ Route::get('admin/all-contacts', [ContactController::class, "getAllContacts"]);
 
 Route::post("/send-contact", [ContactController::class, "sendContact"]);
 
-Route::post('admin/add-product',[\App\Http\Controllers\ProductsController::class,'addProduct']);
+Route::view('/admin/dodaj-product', 'addProduct');
+
+Route::post('/admin/add-product',[\App\Http\Controllers\ProductsController::class,'addProduct']);
 
 Route::get('admin/products',[\App\Http\Controllers\ProductsController::class,'allProducts']);
 

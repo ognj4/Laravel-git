@@ -13,6 +13,8 @@ class ShopController extends Controller
 
         $products = ProductsModel::all();
 
+
+
         return view('shop',compact('products'));
     }
 
