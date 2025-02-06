@@ -10,7 +10,8 @@ class HomepageController extends Controller
     public function index ()
     {
 
-        $products = ProductsModel::latest()->take(6)->get();
+        // najnovijih 6 iz baze
+        $products = ProductsModel::orderByDesc('id')->take(6)->get();
 
         $sat = date("H");
         $trenutnoVreme =date('H:i:s');
