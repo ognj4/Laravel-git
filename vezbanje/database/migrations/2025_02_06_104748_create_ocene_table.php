@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('ocene', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
 
             $table->string('predmet',64);
             $table->unsignedInteger('ocena');
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ocenes');
+        Schema::dropIfExists('ocene');
     }
 };
