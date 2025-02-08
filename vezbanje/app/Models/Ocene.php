@@ -8,6 +8,6 @@ class Ocene extends Model
 {
     protected $table = 'ocene';
     protected $fillable = [
-        'predmet', 'ocena', 'profesor', 'user_id'
+        'predmet', 'ocena', 'profesor',
     ];
 }
