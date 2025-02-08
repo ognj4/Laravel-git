@@ -27,14 +27,14 @@ class ProductsController extends Controller
         //vraca korak nazad od brisanja
         return redirect()->back();
     }
-    public function addProduct (Request $request){
+    public function saveProduct (Request $request){
 
         $request->validate([
-            'name' => 'required|string',
-            'description' => 'required|string',
-            'amount' =>'required|string',
-            'price' => 'required|string',
-            'image' => 'required|string'
+            'name' => 'required|unique:products',
+            'description' => 'required',
+            'amount' =>'required|int|min:0',
+            'price' => 'required|min:0',
+            'image' => 'required'
         ]);
 
         ProductsModel::create([
@@ -43,11 +43,10 @@ class ProductsController extends Controller
             'amount' => $request->get('amount'),
             'price' => $request->get('price'),
             'image' => $request->get('image')
-
-
         ]);
 
-    return redirect('/shop');
+        // koriscenje name rute
+    return redirect()->route('sviProizvodi');
 
 
     }

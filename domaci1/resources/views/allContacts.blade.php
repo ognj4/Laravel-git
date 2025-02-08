@@ -9,8 +9,8 @@
             <th scope="col">#</th>
             <th scope="col">Email</th>
             <th scope="col">Subject</th>
-            <th scope="col">Description</th>
-            <th>Actions</th>
+            <th scope="col">Message</th>
+            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -22,7 +22,8 @@
                 <td>{{$contact->message}}</td>
 
                 <td>
-                    <a class="btn btn-danger">Obrisi</a>
+                    {{--  ovako prosledjujemo named rutu kada nam je potrebna varijabla u linku              --}}
+                    <a href="{{ route('obrisiKontakt', ['contact'=> $contact->id]) }}" class="btn btn-danger">Obrisi</a>
                     <a class="btn btn-primary">Edituj</a>
                 </td>
             </tr>

@@ -11,11 +11,22 @@ class  ContactController extends Controller
         return view('contact');
     }
 
+    public function delete($contact){
+        $singleContact = ContactModel::where('id', $contact)->first();
+        if($singleContact==null){
+            die("OVAJ KONTAKT NE POSTOJI");
+        }
+        $singleContact->delete();
+        return redirect()->back();
+    }
+
     public function getAllContacts() {
 
-        $allContacts = ContactModel::all(); // SELECT * FROM contacts, vadi sve kontakte iz baze
+        // SELECT * FROM contacts, vadi sve kontakte iz baze
+        $allContacts = ContactModel::all();
 
-        return view('allContacts', compact('allContacts')); // Ucitavamo allCOntacts.blade.php i prosledjujemo varijablu
+        // Ucitavamo allCOntacts.blade.php i prosledjujemo varijablu
+        return view('allContacts', compact('allContacts'));
 
     }
 
