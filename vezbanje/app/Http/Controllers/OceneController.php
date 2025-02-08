@@ -15,6 +15,8 @@ class OceneController extends Controller
 
     public function addGrade(Request $request){
 
+
+
         // validiramo podatke
         $request->validate([
             'profesor'=>'string|required',
@@ -23,11 +25,15 @@ class OceneController extends Controller
 
         ]);
 
+
+
+
+
         // upis u bazu
         Ocene::create([
-           'predmet'=>$request->get('predmet'),
-           'ocena'=>$request->get('ocena'),
-           'profesor'=>$request->get('profesor'),
+            'predmet'=>$request->get('predmet'),
+            'ocena'=>$request->get('ocena'),
+            'profesor'=>$request->get('profesor'),
         ]);
 
         return redirect('/');

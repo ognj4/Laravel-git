@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ocene', function (Blueprint $table) {
-            $table->id();
+        Schema::table('ocene', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id')->nullable();
 
-            $table->string('predmet',64);
-            $table->unsignedInteger('ocena');
-            $table->string('profesor', 64);
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
 
-            $table->timestamps();
         });
     }
 
@@ -27,6 +26,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ocene');
+        Schema::table('ocene', function (Blueprint $table) {
+            //
+        });
     }
 };

@@ -2,13 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-
-Route::get('/', [\App\Http\Controllers\OceneController::class, 'allOcene']);
+//Route::get('/', [\App\Http\Controllers\OceneController::class, 'allOcene']);
 // isti nacin samo bez kontrolera
-//Route::get('/', function (){
-//    $ocene = \App\Models\Ocene::all();
-//    return view('welcome', compact('ocene'));
-//});
+Route::get('/', function (){
+    $ocene = \App\Models\Ocene::all();
+    return view('welcome', compact('ocene'));
+});
 
 // kada se dodje na /dodaj-ocenu ucitaj blade addGrade.blade.php
 Route::view('/dodaj-ocenu', 'addGrade');
