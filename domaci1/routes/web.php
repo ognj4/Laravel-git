@@ -15,7 +15,7 @@ Route::get('/admin/all-contacts', [ContactController::class, "getAllContacts"]);
 
 
 Route::get('/admin/all-products', [\App\Http\Controllers\ProductsController::class, "index"])
-->name('sviProizvodi');
+    ->name('sviProizvodi');
 
 
 Route::get('/admin/delete-product/{product}', [\App\Http\Controllers\ProductsController::class, "delete"])
@@ -32,3 +32,8 @@ Route::view('/admin/add-product', 'addProduct');
 Route::post('/admin/save-product',[\App\Http\Controllers\ProductsController::class,'saveProduct'])
     ->name('snimanjeOglasa');
 
+// {id} u uri znaci da je to varijabla i nju stavljamo i u funckciju u controller
+Route::get('/admin/product/edit/{id}',[\App\Http\Controllers\ProductsController::class,'singleProduct'])
+    ->name('product.single');
+Route::post('admin/product/save/{id}',[\App\Http\Controllers\ProductsController::class, 'edit'])
+    ->name('product.save');

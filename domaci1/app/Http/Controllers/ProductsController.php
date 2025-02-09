@@ -51,5 +51,30 @@ class ProductsController extends Controller
 
     }
 
+    public function singleProduct(Request $request, $id){
+
+        $product = ProductsModel::where(['id'=> $id])->first();
+        if ($product == null) {
+            die('Ovaj proizvod ne postoji!');
+        }
+        return view('products/edit',compact('product'));
+    }
+
+    public function edit(Request $request, $id){
+        $product = ProductsModel::where(['id'=> $id])->first();
+        if ($product == null) {
+            die('Ovaj proizvod ne postoji!');
+        }
+        // trenutno u bazi    ->      nova vrednost
+        $product->name = $request->get('name');
+        $product->description = $request->get('description');
+        $product->amount = $request->get('amount');
+        $product->price = $request->get('price');
+        //snima promene u bazu
+        $product->save();
+
+        return redirect()->back();
+    }
+
 
 }
