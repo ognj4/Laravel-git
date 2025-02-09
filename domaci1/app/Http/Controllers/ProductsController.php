@@ -51,20 +51,23 @@ class ProductsController extends Controller
 
     }
 
-    public function singleProduct(Request $request, $id){
-
-        $product = ProductsModel::where(['id'=> $id])->first();
-        if ($product == null) {
-            die('Ovaj proizvod ne postoji!');
-        }
+    // Kada prosledimo ProductModel i $id on automatski radi ProductsModel::where(['id' => 5])->first();
+    public function singleProduct(Request $request, ProductsModel $product){
         return view('products/edit',compact('product'));
     }
+        // OVO JE KOD KOJI JE BINDING ZAMENIO
+//     public function singleProduct(Request $request, ProductsModel $product){
+//
+//            $product = ProductsModel::where(['id'=> $id])->first();
+//
+//            if ($product === null){
+//                die('Ovaj proizvod ne postoji');
+//            }
+//
+//            return view('products/edit',compact('product'));
+//        }
 
-    public function edit(Request $request, $id){
-        $product = ProductsModel::where(['id'=> $id])->first();
-        if ($product == null) {
-            die('Ovaj proizvod ne postoji!');
-        }
+    public function edit(Request $request, ProductsModel $product){
         // trenutno u bazi    ->      nova vrednost
         $product->name = $request->get('name');
         $product->description = $request->get('description');

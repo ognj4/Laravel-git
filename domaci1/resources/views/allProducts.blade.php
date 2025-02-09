@@ -24,7 +24,7 @@
             <td>
                     {{--  ovako prosledjujemo named rutu kada nam je potrebna varijabla u linku              --}}
                 <a href="{{ route('obrisiProizvod',['product' => $product->id]) }}" class="btn btn-danger">Obrisi</a>
-                <a href="{{ route('product.single', ['id'=> $product->id]) }}" class="btn btn-primary">Edituj</a>
+                <a href="{{ route('product.single', ['product'=> $product->id]) }}" class="btn btn-primary">Edituj</a>
             </td>
         </tr>
     @endforeach
