@@ -1,42 +1,52 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/about', 'about');
 
-Route::get('/', [\App\Http\Controllers\HomepageController::class,'index']);
+Route::get('/', [HomepageController::class,'index']);
 
-Route::get('/shop', [\App\Http\Controllers\ShopController::class,'index']);
+Route::get('/shop', [ShopController::class,'index']);
 
 Route::get("/contact", [ContactController::class, "index"]);
 
-Route::get('/admin/all-contacts', [ContactController::class, "getAllContacts"]);
 
 
-Route::get('/admin/all-products', [\App\Http\Controllers\ProductsController::class, "index"])
-    ->name('sviProizvodi');
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/all-contacts', [ContactController::class, "getAllContacts"]);
+
+    Route::get('/all-products', [ProductsController::class, "index"])
+        ->name('sviProizvodi');
 
 
-Route::get('/admin/delete-product/{product}', [\App\Http\Controllers\ProductsController::class, "delete"])
-    ->name('obrisiProizvod'); // "drugo" ime za rutu koju pozivamo preko route ('') u bladeu
-Route::get('/admin/delete-contact/{contact}', [\App\Http\Controllers\ContactController::class, "delete"])
-    ->name('obrisiKontakt');
+    Route::get('/delete-product/{product}', [ProductsController::class, "delete"])
+        ->name('obrisiProizvod'); // "drugo" ime za rutu koju pozivamo preko route ('') u bladeu
+
+    Route::get('/delete-contact/{contact}', [ContactController::class, "delete"])
+        ->name('obrisiKontakt');
+
+    // stranica za prikaz forme
+    Route::view('/add-product', 'addProduct');
+
+    Route::post("/send-contact", [ContactController::class, "sendContact"]);
+
+    // stranica za snimanje podataka
+    Route::post('/save-product',[ProductsController::class,'saveProduct'])
+        ->name('snimanjeOglasa');
+
+    // {product} u uri znaci da je to varijabla i nju stavljamo u funckciju u controller-u
+    Route::get('/product/edit/{product}',[ProductsController::class,'singleProduct'])
+        ->name('product.single');
+
+    Route::post('/product/save/{product}',[ProductsController::class, 'edit'])
+        ->name('product.save');
+
+});
 
 
-Route::post("/send-contact", [ContactController::class, "sendContact"]);
-
-// stranica za prikaz forme
-Route::view('/admin/add-product', 'addProduct');
-// stranica za snimanje podataka
-Route::post('/admin/save-product',[\App\Http\Controllers\ProductsController::class,'saveProduct'])
-    ->name('snimanjeOglasa');
-
-// {product} u uri znaci da je to varijabla i nju stavljamo u funckciju u controller-u
-Route::get('/admin/product/edit/{product}',[\App\Http\Controllers\ProductsController::class,'singleProduct'])
-    ->name('product.single');
-Route::post('admin/product/save/{product}',[\App\Http\Controllers\ProductsController::class, 'edit'])
-    ->name('product.save');
-
-
+// ucitava auth rute, must have
 require __DIR__.'/auth.php';
