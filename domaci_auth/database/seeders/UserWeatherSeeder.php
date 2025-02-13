@@ -23,12 +23,18 @@ class UserWeatherSeeder extends Seeder
             $this->command->getOutput()->error('Niste uneli temperaturu');
         }
 
-        WeatherModel::create( [
-            'city' => $city,
-            'temperature' => $temperature
-        ]);
 
-        $this->command->getOutput()->info("Uspesno unet grad $city sa temperaturom od $temperature");
+        if(WeatherModel::where('city', $city)->exists()) {
+            $this->command->getOutput()->error('Grad vec postoji');
+        } else {
+            WeatherModel::create( [
+                'city' => $city,
+                'temperature' => $temperature
+            ]);
+
+            $this->command->getOutput()->info("Uspesno unet grad $city sa temperaturom od $temperature");
+        }
+
 
     }
 }
