@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 class WeatherController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $prognoza = [
             'Beograd' => 22,
             'Novi Sad' => 23,
