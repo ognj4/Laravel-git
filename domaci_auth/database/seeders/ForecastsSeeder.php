@@ -5,9 +5,7 @@ namespace Database\Seeders;
 use App\Models\CitiesModel;
 use App\Models\ForecastsModel;
 use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Nette\Utils\Random;
 
 class ForecastsSeeder extends Seeder
 {
