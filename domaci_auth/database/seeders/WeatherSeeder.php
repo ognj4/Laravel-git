@@ -25,6 +25,12 @@ class WeatherSeeder extends Seeder
 
         // prelazimo i upisujemo svaki element u tabelu
         foreach($prognoza as $city => $temperature) {
+            $userWeather = WeatherModel::where(['city' => $city])->first();
+            if ($userWeather !== null) {
+                $this->command->getOutput()->error('Grad vec postoji');
+                continue;
+            }
+
             WeatherModel::create([
                 'city' => $city,
                 'temperature' => $temperature
