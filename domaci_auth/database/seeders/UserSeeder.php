@@ -59,27 +59,27 @@ class UserSeeder extends Seeder
 
         // Domaci 2 nacin
 
-        $email = $this->command->getOutput()->ask('Unesite email');
-        if ($email === null) {
-            $this->command->getOutput()->error('Niste uneli email');
-            return;
-        }
-        $name = $this->command->getOutput()->ask('Unesite ime');
-        if ($name === null) {
-            $this->command->getOutput()->error('Niste uneli name');
-            return;
-        }
-        $password = $this->command->getOutput()->ask('Unesite password');
-        if ($password === null) {
-            $this->command->getOutput()->error('Niste uneli password');
-            return;
-        }
-
-        $user = User::where(['email' => $email])->first();
-        if ($user instanceof User) {
-            $this->command->getOutput()->error('Ovaj email je vec u bazi!');
-            return;
-        }
+//        $email = $this->command->getOutput()->ask('Unesite email');
+//        if ($email === null) {
+//            $this->command->getOutput()->error('Niste uneli email');
+//            return;
+//        }
+//        $name = $this->command->getOutput()->ask('Unesite ime');
+//        if ($name === null) {
+//            $this->command->getOutput()->error('Niste uneli name');
+//            return;
+//        }
+//        $password = $this->command->getOutput()->ask('Unesite password');
+//        if ($password === null) {
+//            $this->command->getOutput()->error('Niste uneli password');
+//            return;
+//        }
+//
+//        $user = User::where(['email' => $email])->first();
+//        if ($user instanceof User) {
+//            $this->command->getOutput()->error('Ovaj email je vec u bazi!');
+//            return;
+//        }
 
     }
 }
