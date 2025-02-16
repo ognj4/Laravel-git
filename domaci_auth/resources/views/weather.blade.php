@@ -1,5 +1,5 @@
-@foreach($prognoza as $grad => $temperatura)
+@foreach($prognoza as $weather)
 
-    <p>Sada je {{$temperatura}}° u {{$grad}}</p>
+    <p>Sada je {{ $weather->temperature}}° u gradu {{$weather->city->name}}</p>
 
 @endforeach
