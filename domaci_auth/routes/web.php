@@ -31,6 +31,12 @@ Route::get('/prognoza', [WeatherController::class, 'index'])->middleware('auth')
 // samo preko id-a ali kad smo dodali :name on kaze da trazi po name (naziv polja u bazi)
 Route::get('/forecast/{city:name}',[ForecastController::class,'index']);
 
+
+Route::view('/admin/weather', 'admin.weather_index');
+
+
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
