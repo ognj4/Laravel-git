@@ -14,6 +14,7 @@ class ForecastsModel extends Model
 
     public function city()
     {
+        // ovako pravimo one to one relaciju, dajemo mu model iz kog uzimamo foreign
         return $this->hasOne(CitiesModel::class,'id','city_id');
     }
 }

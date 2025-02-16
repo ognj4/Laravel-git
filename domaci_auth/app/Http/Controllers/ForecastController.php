@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CitiesModel;
+use App\Models\ForecastsModel;
+
 class ForecastController extends Controller
 {
-    public function index($city)
+    public function index(CitiesModel $city)
     {
-        $city = strtolower($city);
-        $forecasts = [
-            'beograd' => [22, 12, 33, 14, 17],
-            'sarajevo' => [24, 12, 4, 17, 21],
-        ];
 
-        if (!array_key_exists($city, $forecasts)) {
-            die("Ovaj grad ne postoji");
-        }
+        // ono sto smo uneli u url je ime grada, uzima id od tog polja i njega trazi
+        $prognoze = ForecastsModel::where(['city_id' => $city->id])->get();
+
+        return view ('forecasts', compact('prognoze'));
     }
 }
