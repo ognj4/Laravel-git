@@ -18,4 +18,5 @@ class AdminWeatherController extends Controller
         $weather->save();
         return redirect()->back();
     }
+
 }
