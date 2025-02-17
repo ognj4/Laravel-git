@@ -13,6 +13,7 @@ class CitiesModel extends Model
     public function forecasts()
     {
         //                  Model sa kojim povezujemo    forecasts tabela    cities tabela
-        return $this->hasMany(ForecastsModel::class,'city_id','id');
+        return $this->hasMany(ForecastsModel::class,'city_id','id')
+            ->orderBy('forecast_date');
     }
 }
