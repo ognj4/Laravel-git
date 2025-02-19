@@ -19,7 +19,7 @@ class ForecastsController extends Controller
         // provera da li grad postoji
         if (count($cities) === 0) {
             // privremeno ispisivanje greske koje nestaje
-            return redirect()->back()->with('error','not_found');
+            return redirect()->back()->with('error','Nismo pronasli gradove');
         }
 
         return view('search_results', compact('cities'));
