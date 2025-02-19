@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminForecastsController;
 use App\Http\Controllers\AdminWeatherController;
 use App\Http\Controllers\ForecastController;
+use App\Http\Controllers\ForecastsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeatherController;
 use Illuminate\Support\Facades\Route;
@@ -28,16 +29,18 @@ Route::get('/',function (){
 
 Route::get('/prognoza', [WeatherController::class, 'index'])->middleware('auth');
 
+// forecasts/search?name=Beo trazi sve koji sadrzi taj deo
+Route::get('/forecast/search', [ForecastsController::class,'search'])->name('forecast.search');
+
 // {city} prosledjujemo preko urla i on ga odmah trazi u bazi
 // samo preko id-a ali kad smo dodali :name on kaze da trazi po name (naziv polja u bazi)
 Route::get('/forecast/{city:name}',[ForecastController::class,'index']);
-
 
 Route::view('/admin/weather', 'admin.weather_index');
 Route::post('/admin/weather/update',[AdminWeatherController::class,'update'])->name('weather.update');
 
 Route::view('/admin/forecasts', 'admin.forecasts_index');
-Route::post('/admin/forecasts/create',[AdminForecastsController::class, 'create'])->name('forecasts.create');
+Route::post('/admin/forecasts/create',[AdminForecastsController::class, 'create'])->name('forecast.create');
 
 
 Route::get('/dashboard', function () {
