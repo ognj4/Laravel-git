@@ -13,7 +13,8 @@ class ForecastsController extends Controller
 
 
         // SELECT * FROM cities where name LIKE "
-        $cities = CitiesModel::where("name", "LIKE", "%$cityName%")->get();
+        // ::with() - preloading olaksava bazu
+        $cities = CitiesModel::with('todaysForecast')->where("name", "LIKE", "%$cityName%")->get();
 
 
         // provera da li grad postoji
