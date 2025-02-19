@@ -11,9 +11,16 @@ class ForecastsController extends Controller
 
         $cityName = $request->get('city');
 
+
         // SELECT * FROM cities where name LIKE "
         $cities = CitiesModel::where("name", "LIKE", "%$cityName%")->get();
 
+
+        // provera da li grad postoji
+        if (count($cities) === 0) {
+            // privremeno ispisivanje greske koje nestaje
+            return redirect()->back()->with('error','not_found');
+        }
 
         return view('search_results', compact('cities'));
     }
