@@ -39,7 +39,7 @@ Route::get('/forecast/{city:name}',[ForecastController::class,'index'])
     ->name('forecast.permalink');
 
 
-Route::prefix('/admin')->group(function () {
+Route::prefix('/admin')->middleware(\App\Http\Middleware\AdminCheckMiddleware::class)->group(function () {
     Route::view('/weather', 'admin.weather_index');
 
     Route::post('/weather/update',[AdminWeatherController::class,'update'])
