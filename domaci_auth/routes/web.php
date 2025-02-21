@@ -38,13 +38,18 @@ Route::get('/forecast/search', [ForecastsController::class,'search'])
 Route::get('/forecast/{city:name}',[ForecastController::class,'index'])
     ->name('forecast.permalink');
 
-Route::view('/admin/weather', 'admin.weather_index');
-Route::post('/admin/weather/update',[AdminWeatherController::class,'update'])
-    ->name('weather.update');
 
-Route::view('/admin/forecasts', 'admin.forecasts_index');
-Route::post('/admin/forecasts/create',[AdminForecastsController::class, 'create'])
-    ->name('forecast.create');
+Route::prefix('/admin')->group(function () {
+    Route::view('/weather', 'admin.weather_index');
+
+    Route::post('/weather/update',[AdminWeatherController::class,'update'])
+        ->name('weather.update');
+
+    Route::view('/forecasts', 'admin.forecasts_index');
+
+    Route::post('forecasts/create',[AdminForecastsController::class, 'create'])
+        ->name('forecast.create');
+});
 
 
 Route::get('/dashboard', function () {
