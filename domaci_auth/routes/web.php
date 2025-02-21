@@ -38,6 +38,10 @@ Route::get('/forecast/search', [ForecastsController::class,'search'])
 Route::get('/forecast/{city:name}',[ForecastController::class,'index'])
     ->name('forecast.permalink');
 
+/**
+ * User cities
+ */
+Route::get('/user-cities/favourite/{city}',[\App\Http\Controllers\UserCities::class, 'favourite'])->name('city.favourite');
 
 Route::prefix('/admin')->middleware(\App\Http\Middleware\AdminCheckMiddleware::class)->group(function () {
     Route::view('/weather', 'admin.weather_index');
