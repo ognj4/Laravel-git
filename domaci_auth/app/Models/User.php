@@ -50,6 +50,6 @@ class User extends Authenticatable
     public function cityFavourites()
     {
         return $this->hasMany(UserCities::class, 'user_id', 'id');
-
     }
+
 }
