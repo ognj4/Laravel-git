@@ -4,6 +4,10 @@
 
 @section('content')
 
+    @foreach($userFavourites as $userFavourite)
+         <p class="text-white"> {{ $userFavourite->city->name }} {{ $userFavourite->city->todaysForecast->temperature }}</p>
+    @endforeach
+
     <form method="GET" action="{{ route('forecast.search') }}"
           class="d-flex justify-content-center align-items-center vh-100">
 

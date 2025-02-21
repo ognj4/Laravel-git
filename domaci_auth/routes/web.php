@@ -6,10 +6,12 @@ use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\ForecastsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeatherController;
+use App\Models\UserCities;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Route::view('/','welcome');
+
 
 Route::get('/home', function (){
     return "Hello World";
@@ -24,7 +26,19 @@ Route::get('/contact', function (){
 });
 
 Route::get('/',function (){
-    return view('welcome');
+
+
+    $userFavourites = [];
+
+    $user = Auth::user();
+    if ($user !== null) {
+        $userFavourites = UserCities::where([
+            'user_id' => $user->id
+        ])->get();
+    }
+
+
+    return view('welcome', compact('userFavourites'));
 });
 
 Route::get('/prognoza', [WeatherController::class, 'index'])->middleware('auth');
