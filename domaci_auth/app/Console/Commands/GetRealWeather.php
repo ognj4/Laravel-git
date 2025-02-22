@@ -26,13 +26,9 @@ class GetRealWeather extends Command
      */
     public function handle()
     {
-        $url = "https://reqres.in/api/users?page=2";
+        $url = "https://api.weatherapi.com/v1/current.json?key=bc974de5281b46459e3164446252202&q=London&aqi=no";
+        $response = Http::get($url);
 
-       $jsonResponse = $response = Http::get($url);
-
-       // pretvaramo iz jsona u php assoc array sto mozemo da koristimo
-       $jsonResponse = json_decode($jsonResponse, true);
-
-       dd($jsonResponse['data'][0]['email']);
+        dd($response->body());
     }
 }
