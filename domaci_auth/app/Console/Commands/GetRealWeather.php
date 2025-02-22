@@ -28,8 +28,11 @@ class GetRealWeather extends Command
     {
         $url = "https://reqres.in/api/users?page=2";
 
-        $response = Http::get($url);
+       $jsonResponse = $response = Http::get($url);
 
-        dd($response->body());
+       // pretvaramo iz jsona u php assoc array sto mozemo da koristimo
+       $jsonResponse = json_decode($jsonResponse, true);
+
+       dd($jsonResponse['data'][0]['email']);
     }
 }
