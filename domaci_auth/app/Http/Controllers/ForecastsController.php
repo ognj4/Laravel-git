@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CitiesModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 
 class ForecastsController extends Controller
@@ -12,6 +13,8 @@ class ForecastsController extends Controller
 
         $cityName = $request->get('city');
 
+        // php artisan weather:get-real $cityName
+        Artisan::call('weather:get-real', ['city' => $cityName]);
 
         // SELECT * FROM cities where name LIKE "
         // ::with() - preloading olaksava bazu

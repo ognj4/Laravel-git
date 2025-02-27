@@ -12,6 +12,18 @@ class ForecastsHelper
         'cloudy'=> 'fa-cloud-sun'
     ];
 
+    public static function getIconByWeatherType($type){
+
+        if(in_array($type, self::WEATHER_ICONS)) {
+            return self::WEATHER_ICONS[$type];
+        }
+        return 'fa-sun';
+
+//        // iz trenutne klase ForecastsHelper trazi konstantu WEATHER_ICONS
+//        $icon = self::WEATHER_ICONS[$type];
+//        return $icon;
+    }
+
     public static function getColorByTemperature($temperature){
 
         if($temperature <= 0)
@@ -33,9 +45,5 @@ class ForecastsHelper
         return $boja;
     }
 
-    public static function getIconByWeatherType($type){
-        // iz trenutne klase ForecastsHelper trazi konstantu WEATHER_ICONS
-        $icon = self::WEATHER_ICONS[$type];
-        return $icon;
-    }
+
 }
