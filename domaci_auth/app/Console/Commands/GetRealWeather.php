@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\CitiesModel;
 use App\Models\ForecastsModel;
+use App\Services\WeatherService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\Finder\Iterator\SortableIterator;
@@ -44,14 +45,9 @@ class GetRealWeather extends Command
         }
 
 
-        $response = Http::get(env('weather_api_url').'v1/forecast.json', [
-            'key' => env('WEATHER_API_KEY'),
-            'q' => $city,
-            'aqi' =>'no',
-            'days' => 1,
-        ]);
+        $weathetService = new WeatherService();
+        $jsonResponse = $weathetService->getForecast($city);
 
-        $jsonResponse = $response->json();
         if (isset($jsonResponse['error'])) {
             $this->output->error($jsonResponse['error']['message']);
         }
