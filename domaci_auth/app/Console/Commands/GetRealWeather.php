@@ -12,27 +12,39 @@ class GetRealWeather extends Command
      *
      * @var string
      */
-    protected $signature = 'weather:get-real';
+    protected $signature = 'weather:get-real {city}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'This comand is used to synchronize real life weather with our application using the Ope API';
+    protected $description = 'This command is used to synchronize real life weather with our application using the Ope API';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        $url = "https://api.weatherapi.com/v1/current.json";
-        $response = Http::get($url, [
-            'key' => 'bc974de5281b46459e3164446252202',
-            'q' =>'London',
-            'aqi' =>'no'
+
+//        $url = "https://api.weatherapi.com/v1/current.json";
+//        $response = Http::get($url, [
+//            'key' => 'bc974de5281b46459e3164446252202',
+//            'q' =>'London',
+//            'aqi' =>'no'
+//        ]);
+
+        $response = Http::get(env('weather_api_url').'v1/forecast.json', [
+            'key' => env('WEATHER_API_KEY'),
+            'q' => $this->argument('city'),
+            'aqi' =>'no',
+            'days' => 1,
         ]);
 
-        dd($response->body());
+        $jsonResponse = $response->json();
+        if (isset($jsonResponse['error'])) {
+            $this->output->error($jsonResponse['error']['message']);
+        }
+        dd($jsonResponse);
     }
 }
