@@ -12,7 +12,7 @@ class TestCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'app:test-command';
+    protected $signature = 'app:test-command {city}';
 
     /**
      * The console command description.
@@ -31,11 +31,16 @@ class TestCommand extends Command
 //        // za ispis respons-> json()
 //        dd($response->json()) ;
 
-        $url = 'https://reqres.in/api/create';
-        $response = Http::post($url, [
-            'name' => 'Ognjen',
-            'job' => 'Programer'
+
+        $city = $this->argument('city');
+
+        $url = "https://api.weatherapi.com/v1/current.json";
+        $response = Http::get($url, [
+            'key' => 'bc974de5281b46459e3164446252202',
+            'q' => $city,
+            'aqi' =>'no'
         ]);
-        dd($response->json());
+
+        dd($response->body());
     }
 }
