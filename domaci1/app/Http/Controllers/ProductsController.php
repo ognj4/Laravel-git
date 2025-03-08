@@ -10,7 +10,6 @@ class ProductsController extends Controller
     function index (){
 
         $allProducts = ProductsModel::all();
-
         return view('allProducts',compact('allProducts'));
     }
 
@@ -47,8 +46,6 @@ class ProductsController extends Controller
 
         // koriscenje name rute
     return redirect()->route('sviProizvodi');
-
-
     }
 
     // Kada prosledimo ProductModel i $id on automatski radi ProductsModel::where(['id' => 5])->first();

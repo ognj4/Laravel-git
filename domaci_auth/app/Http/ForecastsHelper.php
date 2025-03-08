@@ -9,18 +9,19 @@ class ForecastsHelper
         'rainy' => 'fa-cloud-rain',
         'snowy' => 'fa-snowflake',
         'sunny' => 'fa-sun',
-        'cloudy'=> 'fa-cloud-sun'
+        'cloudy' => 'fa-cloud-sun'
     ];
 
-    public static function getIconByWeatherType($type){
+    public static function getIconByWeatherType($type)
+    {
 
 
         // zamena za switch kao i in_array
-        return $icon = match($type) {
+        return $icon = match ($type) {
             'rainy' => 'fa-cloud-rain',
             'snowy' => 'fa-snowflake',
             'sunny' => 'fa-sun',
-            'cloudy'=> 'fa-cloud-sun',
+            'cloudy' => 'fa-cloud-sun',
             default => 'fa-sun'
         };
 
@@ -31,22 +32,16 @@ class ForecastsHelper
 
     }
 
-    public static function getColorByTemperature($temperature){
+    public static function getColorByTemperature($temperature)
+    {
 
-        if($temperature <= 0)
-        {
+        if ($temperature <= 0) {
             $boja = 'lightblue';
-        }
-        else if($temperature >= 1 && $temperature <= 15)
-        {
+        } else if ($temperature >= 1 && $temperature <= 15) {
             $boja = 'blue';
-        }
-        else if($temperature > 15 && $temperature <= 25)
-        {
+        } else if ($temperature > 15 && $temperature <= 25) {
             $boja = 'green';
-        }
-        else
-        {
+        } else {
             $boja = 'red';
         }
         return $boja;

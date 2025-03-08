@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class AdminWeatherController extends Controller
 {
-    public function update(Request $request){
+    public function update(Request $request)
+    {
 
         $request->validate([
             'temperature' => 'required',

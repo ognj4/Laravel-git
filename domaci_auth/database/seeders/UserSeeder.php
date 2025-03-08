@@ -16,7 +16,6 @@ class UserSeeder extends Seeder
 //        *********** WITH FAKER **************
 //        // command ask koliko da upise korisnika
 //        $ammount = $this->command->getOutput()->ask('Koliko korisnika zelite?',20);
-//
 //        $password = $this->command->getOutput()->ask('Koja je sifra?', '123456');
 //
 //        $faker = Factory::create();

@@ -6,8 +6,6 @@ use App\Models\CitiesModel;
 use App\Models\ForecastsModel;
 use App\Services\WeatherService;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Http;
-use Symfony\Component\Finder\Iterator\SortableIterator;
 
 class GetRealWeather extends Command
 {
@@ -36,7 +34,7 @@ class GetRealWeather extends Command
         // php artisan weather:get-real Belgrade -> SELECT * FROM citites WHERE name = 'Belgrade'
 
         // Izvadi iz Citties grad koji ima ime = Belgrade
-        $dbCity = CitiesModel::where(['name'=> $city ])->first();
+        $dbCity = CitiesModel::where(['name' => $city])->first();
 
         // Ako grad ne postoji
         if ($dbCity === null) {
@@ -52,7 +50,7 @@ class GetRealWeather extends Command
             $this->output->error($jsonResponse['error']['message']);
         }
 
-        if($dbCity->todaysForecast !== null) {
+        if ($dbCity->todaysForecast !== null) {
             $this->output->comment('Command finished!');
             return;
         }
@@ -66,10 +64,10 @@ class GetRealWeather extends Command
 
         $forecast = [
             'city_id' => $dbCity->id,
-            'temperature' => $temperature ,
+            'temperature' => $temperature,
             'forecast_date' => $forecastDate,
-            'weather_type' =>strtolower($weathetType) ,
-            'probability'=> $probability
+            'weather_type' => strtolower($weathetType),
+            'probability' => $probability
         ];
 
         ForecastsModel::create($forecast);

@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 
 class AdminForecastsController extends Controller
 {
-    public function create(Request $request) {
+    public function create(Request $request)
+    {
 
         $request->validate([
             'city_id' => 'required|exists:cities,id',
             'temperature' => 'required',
-            'weather_type' =>'required',
+            'weather_type' => 'required',
             'forecast_date' => 'required'
         ]);
 

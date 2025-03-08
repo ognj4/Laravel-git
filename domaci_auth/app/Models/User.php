@@ -34,6 +34,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function cityFavourites()
+    {
+        return $this->hasMany(UserCities::class, 'user_id', 'id');
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -45,11 +50,6 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    public function cityFavourites()
-    {
-        return $this->hasMany(UserCities::class, 'user_id', 'id');
     }
 
 }

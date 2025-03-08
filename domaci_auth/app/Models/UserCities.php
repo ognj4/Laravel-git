@@ -13,7 +13,7 @@ class UserCities extends Model
 
     public function city()
     {
-        return $this->hasOne(CitiesModel::class, 'id','city_id');
+        return $this->hasOne(CitiesModel::class, 'id', 'city_id');
     }
 
 }

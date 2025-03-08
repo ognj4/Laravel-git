@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 class ForecastsController extends Controller
 {
-    public function search(Request $request) {
+    public function search(Request $request)
+    {
 
         $cityName = $request->get('city');
 
@@ -24,11 +25,11 @@ class ForecastsController extends Controller
         // provera da li grad postoji
         if (count($cities) === 0) {
             // privremeno ispisivanje greske koje nestaje
-            return redirect()->back()->with('error','Nismo pronasli gradove');
+            return redirect()->back()->with('error', 'Nismo pronasli gradove');
         }
 
         $userFavourites = [];
-        if(Auth::check()) {
+        if (Auth::check()) {
             $userFavourites = Auth::user()->cityFavourites;
             // pretvorili smo u array svih favourite, da bi lakse proverili kasnije
             $userFavourites = $userFavourites->pluck('city_id')->toArray();

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('amount');
             $table->float('price');
             $table->string('image');
+
             $table->timestamps();
         });
     }
